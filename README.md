@@ -3,7 +3,7 @@
 Knight character with custom actions and animations. Develop in Python3 with OpenGL &amp; PyGame.
 
 Available keys (Animation will run while key is being pressed)
----------------------------------------------
+--------------------------------------------------------------
   * <kbd>◀️</kbd>: Move Left
   * <kbd>▶️</kbd>: Move Right
   * <kbd>⬆️</kbd>: Go Back
@@ -23,7 +23,7 @@ Available keys (Animation will run while key is being pressed)
   * <kbd>W</kbd>: Wave
 
 Available zoom and rotation
----------------------------------------------
+---------------------------
   * Take mouse pointer to the left of the screen to rotate the knight to the left.
   * Take mouse pointer to the right of the screen to rotate knight to the right.
   * Take mouse pointer up of the screen to zoom in scene.
@@ -31,13 +31,14 @@ Available zoom and rotation
   * Press mouse on the left side of the screen will move the scene to the left (while keep pressing).
   * Press mouse on the right side of the screen will move the scene to the right (while keep pressing).
 
+Screenshot
+----------
+
+![Screenshot](https://raw.githubusercontent.com/DanielMartinezC/python-gl-knight/master/screenshot.png)
 
 Developed for academic purposes.
 
-Student: Daniel Martinez Condinanza.
-
-University: Universidad Católica del Uruguay.
-
-Subject: Graphics Computer.
-
-Lecturer: Sergio Azcurrain. 
+ * Student: Daniel Martinez Condinanza.
+ * University: Universidad Católica del Uruguay.
+ * Subject: Graphics Computer.
+ * Lecturer: Sergio Azcurrain. 
