@@ -13,7 +13,7 @@ class Ground(object):
     '''
     def __init__(self):
         self.ground_id = graphics.load_texture("images/ConcreteTriangles.png")
-        self.ground = graphics.ObjLoader("plane.obj")
+        self.ground = graphics.ObjLoader("ground/plane.obj")
 
         self.camera_x = 0.0
         self.camera_y = 0.0
@@ -47,7 +47,7 @@ class Ground(object):
         pos = pygame.mouse.get_pos()
 
         pressed = pygame.mouse.get_pressed()
-        
+
         if not pressed[0]:
             if pos[1] < 1:
                 self.zoom_in()
