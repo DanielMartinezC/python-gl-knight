@@ -7,7 +7,7 @@ Available keys (Animation will run while key is being pressed)
   * <kbd>◀️</kbd>: Move Left
   * <kbd>▶️</kbd>: Move Right
   * <kbd>⬆️</kbd>: Go Back
-  * <kbd>⬇️</kbd>: Go Back
+  * <kbd>⬇️</kbd>: Go Front
   * <kbd>Q</kbd>: Stand
   * <kbd>A</kbd>: Attack (🔈 ON! 🙂)
   * <kbd>C</kbd>: Crouch Attack
