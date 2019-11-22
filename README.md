@@ -34,7 +34,7 @@ Available zoom and rotation
 
 Developed for academic purposes.
 
-Student: Daniel Martinez Condinanza
+Student: Daniel Martinez Condinanza.
 
 University: Universidad Católica del Uruguay.
 
