@@ -1,0 +1,34 @@
+{
+    "objects": [
+        {
+            "id": 1,
+            "path":"knight_animado",
+            "name":"knight",
+            "texture":"images/knight_good.png"
+        },
+        {
+            "id": 2,
+            "path":"weapon_knight_animada",
+            "name":"weapon_k",
+            "texture":"images/weapon_k.png"
+        }
+    ],
+    "lights": [
+        {   
+            "material": "GL_DIFFUSE",
+            "vector": [1,1,1,1]
+        },
+        {   
+            "material": "GL_AMBIENT",
+            "vector": [0.1,0.1,0.1,1]
+        },
+        {   
+            "material": "GL_POSITION",
+            "vector": [0,0,0,1]
+        },
+        {   
+            "material": "GL_SPECULAR",
+            "vector": [0,0,0,1]
+        }
+    ]
+}
