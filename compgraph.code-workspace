@@ -1,19 +1,7 @@
 {
-	"folders": [
-		{
-			"path": "knight_animado"
-		},
-		{
-			"path": "."
-		},
-		{
-			"path": "/Users/danielm/Downloads/knight_animado"
-		},
-		{
-			"path": "/Users/danielm/Downloads/weapon_knight_animada"
-		},
-		{
-			"path": "python-gl-knight"
-		}
-	]
+    "folders": [
+        {
+            "path": "."
+        }
+    ]
 }

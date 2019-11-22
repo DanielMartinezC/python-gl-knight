@@ -47,14 +47,14 @@ class Ground(object):
         pos = pygame.mouse.get_pos()
 
         pressed = pygame.mouse.get_pressed()
-
+        
         if not pressed[0]:
-            if pos[1] < 5:
+            if pos[1] < 1:
                 self.zoom_in()
-            elif pos[1] > 700:
+            elif pos[1] > 750:
                 self.zoom_out()
         else:
-            if pos[0] < 400:
+            if pos[0] < 450:
                 self.camera_x += 1.5
             else:
                 self.camera_x -= 1.5
@@ -63,12 +63,14 @@ class Ground(object):
     MARK: - Zoom Helpers
     '''
     def zoom_in(self):
-        # Zoom camera
-        self.camera_zoom *= 1.2
+        # Zoom camera in until 2.0
+        if self.camera_zoom <= 2.0:
+            self.camera_zoom *= 1.2
 
     def zoom_out(self):
-        # Zoom camera
-        self.camera_zoom /= 1.2
+        # Zoom camera out until 0.1
+        if self.camera_zoom >= 0.1:
+            self.camera_zoom /= 1.2
 
     def zoom_camera(self):
         # Move to camera position
@@ -104,7 +106,6 @@ class GenericObj(object):
     two_key = False #Pain b
     three_key = False #Pain c
     r_key = False #Point
-    t_key = False #Salute
     w_key = False #Wave
     
     action = "stand"
@@ -160,6 +161,12 @@ class GenericObj(object):
             self.do_action("flip", 11)
         elif self.j_key:
             self.do_action("jump", 5)
+        elif self.l_key:
+            self.do_action("death_fallbackslow", 7)
+        elif self.w_key:
+            self.do_action("wave", 10)
+        elif self.r_key:
+            self.do_action("point", 11)
         else:
             self.stand()
             
@@ -168,16 +175,16 @@ class GenericObj(object):
         pressed = pygame.mouse.get_pressed()
 
         if not pressed[0]:
-            if pos[0] < 75:
+            if pos[0] < 50:
                 self.rotate(-5)
-            elif pos[0] > 600:
+            elif pos[0] > 850:
                 self.rotate(5)
-            if pos[1] < 5:
+            if pos[1] < 1:
                 self.zoom_in()
-            elif pos[1] > 700:
+            elif pos[1] > 750:
                 self.zoom_out()
         else:
-            if pos[0] < 400:
+            if pos[0] < 450:
                 self.camera_x += 1.5
             else:
                 self.camera_x -= 1.5
@@ -207,7 +214,6 @@ class GenericObj(object):
         self.two_key = False #Pain b
         self.three_key = False #Pain c
         self.r_key = False #Point
-        self.t_key = False #Salute
         self.w_key = False #Wave
         self.sound_channel.stop()
 
@@ -236,8 +242,10 @@ class GenericObj(object):
             self.current_position += 1
         else:
             self.current_position = 0
-        sound1 = pygame.mixer.Sound("sounds/run.wav")
-        self.sound_channel.play(sound1, loops = -1)
+        if os.path.isfile('sounds/run.wav'):  
+            sound1 = pygame.mixer.Sound('sounds/run.wav')
+            sound1.set_volume(1)
+            self.sound_channel.play(sound1, loops = -1)
         self.action = "run"
 
     def move_right(self):
@@ -273,12 +281,14 @@ class GenericObj(object):
         self.mouse_angle += n
     
     def zoom_in(self):
-        # Zoom camera
-        self.camera_zoom *= 1.2
+        # Zoom camera in until 2.0
+        if self.camera_zoom <= 2.0:
+            self.camera_zoom *= 1.2
 
     def zoom_out(self):
-        # Zoom camera
-        self.camera_zoom /= 1.2
+        # Zoom camera out until 0.1
+        if self.camera_zoom >= 0.1:
+            self.camera_zoom /= 1.2
 
     def zoom_camera(self):
         # Move to camera position
@@ -331,8 +341,11 @@ def main():
     channel2 = pygame.mixer.Channel(1)
 
     # Play backtrack on channel 1
-    sound1 = pygame.mixer.Sound("sounds/medieval-introduction.wav")
-    channel1.play(sound1, loops = -1)
+    if os.path.isfile('sounds/medieval-introduction.wav'):  
+        sound1 = pygame.mixer.Sound('sounds/medieval-introduction.wav')
+        channel1.play(sound1, loops = -1)
+
+    currently_running_sound = False
 
     # Read input file (objs and lights)
     input_file = conf.InputFile("inputfile.txt")
@@ -376,24 +389,24 @@ def main():
     while not done:
         # Main event loop
         for event in pygame.event.get(): # User did something
-            
+             
             if event.type == pygame.QUIT: # If user clicked close
                 done = True # Flag that we are done so we exit this loop
             
             if event.type == pygame.KEYDOWN:
 
                 if event.key == pygame.K_LEFT:
-                    objs.move_left()
                     objs.left_key = True
+                    currently_running_sound = True
                 elif event.key == pygame.K_RIGHT:
-                    objs.move_right()
                     objs.right_key = True
+                    currently_running_sound = True
                 elif event.key == pygame.K_UP:
-                    objs.move_forward()
                     objs.up_key = True
+                    currently_running_sound = True
                 elif event.key == pygame.K_DOWN:
-                    objs.move_back()
                     objs.down_key = True
+                    currently_running_sound = True
                 elif event.key == pygame.K_a:
                     objs.a_key = True
                 elif event.key == pygame.K_c:
@@ -414,9 +427,16 @@ def main():
                     objs.t_key = True
                 elif event.key == pygame.K_j:
                     objs.j_key = True
+                elif event.key == pygame.K_w:
+                    objs.w_key = True
+                elif event.key == pygame.K_l:
+                    objs.l_key = True
+                elif event.key == pygame.K_r:
+                    objs.r_key = True
 
             if event.type == pygame.KEYUP:
                 objs.keyup()
+                currently_running_sound = False
         
         objs.update()
         objs.render_scene()
