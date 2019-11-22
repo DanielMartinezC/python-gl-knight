@@ -32,7 +32,9 @@ Available zoom and rotation
   * Press mouse on the right side of the screen will move the scene to the right (while keep pressing).
 
 
-Developed for university purposes.
+Developed for academic purposes.
+
+Student: Daniel Martinez Condinanza
 
 University: Universidad Católica del Uruguay.
 
